@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--This application includes thymeleaf extras for Spring security. Using these, you can change the way your page renders
+depending on the user who is (or is not) logged in. -->
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--Read through this code and correct the mistakes-->
+    <h1>This is the main page</h1>
+    <h2 sec:authorize="isAnonymous()">Users who are not logged in can see this message</h2>
+    <h2 sec:authorize="isAuthenticated()">You can only see it after you have logged in</h2>
+    <h3>Everyone can see this message, whether they are logged in or not</h3>
+    <h3 sec:authorize="hasAnyAuthority('ADMIN','USER')">If you are an admin user you will see this</h3>
+    <!--This will show 'anonymousUser' if the user is not logged in. Change this so that it only displays the name of the user if they are logged in.-->
+    <!--<h3 sec:authentication="name"></h3>-->
+    <h3 sec:authorize="isAuthenticated()" th:inline="text">[[${#authentication.name}]] is the user you are logged in as. Look at this syntax to see how it displays differently.</h3>
+    <h4 th:inline="text" th:if="${#authentication.name}=='Brandon'">Display this only if the authenticated user is Brandon, whose password should be $pass</h4>
+</body>
+</html>

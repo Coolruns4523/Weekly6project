@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+</head>
+<body>
+<a class="btn btn=primary" href="/add">Add Event</a>
+<table class="table table-dark">
+    <thread>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Type of Event</th>
+            <th scope="col">Update Event Status</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thread>
+    <tbody>
+    <tr th:each="aEvent : ${events}">
+
+        <td th:text="${aEvent.name}"></td>
+        <td th:text="${aEvent.startDate}"></td>
+        <td th:text="${aEvent.endDate}"></td>
+        <td th:text="${aEvent.typeOfEvent}"></td>
+<td>
+    <a class="btn btn-primary" th:href="@{/update/{id}(id=${aPet.id})}">Update</a>
+    <a class="btn btn-primary"  th:href="@{/delete/{id}(id=${aPet.id})}">Delete</a>
+</td>
+  <!--
+    <div class="btn-group btn-group-sm">
+        <button type="button" class="btn btn-basic"  th:href="@{/detail/{id}(id=${aRoom.id})}">Detail</button>
+    </div>
+    <div class="btn-group btn-group-sm" sec:authorize="hasAnyAuthority('ADMIN')">
+        <button type="button" class="btn btn-basic"  th:href="@{/update/{id}(id=${aRoom.id})}">Update</button>
+        <button type="button" class="btn btn-basic"  th:href="@{/delete/{id}(id=${aRoom.id})}">Delete</button>
+    </div>-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
